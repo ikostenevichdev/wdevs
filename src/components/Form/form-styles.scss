@@ -1,0 +1,616 @@
+@import "../../scss/_variables.scss";
+@import "include-media/dist/_include-media.scss";
+
+
+.row {
+  display: block;
+
+  @include media(">=tablet-xl") {
+    display: flex;
+  }
+}
+
+.form {
+  color: $base-text-color;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 300px;
+  max-height: 380px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include media(">=tablet") {
+    width: 390px;
+    max-height: 360px;
+  }
+
+  @include media(">=tablet-xl") {
+    width: 390px;
+    max-height: 300px;
+  }
+
+  @include media(">=desktop") {
+    width: 480px;
+    max-height: calc(100vh - 280px);
+  }
+
+  @include media(">=widescreen") {
+    width: 480px;
+    max-height: 780px;
+  }
+}
+
+.input-group {
+  display: inline;
+  position: relative;
+  align-items: center;
+  align-self: stretch;
+  font-size: 16px;
+
+  &__input,
+  textarea {
+    outline: none;
+    color: $black;
+    font-size: 16px;
+    background: $inputBackground;
+    border: 1px solid $borderInput;
+    box-sizing: border-box;
+    border-radius: 26px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 300px;
+    padding: 5px 12px;
+    margin-bottom: 12px;
+
+    @include media(">=tablet") {
+      width: 390px;
+      margin-bottom: 10px;
+      padding: 10px 16px;
+    }
+
+    @include media(">=desktop") {
+      width: 480px;
+      margin-bottom: 20px;
+    }
+
+    @include media(">=widescreen") {
+      margin-bottom: 24px;
+      padding: 10px 24px;
+    }
+  }
+
+  input {
+    height: 40px;
+
+    @include media(">=widescreen") {
+      height: 48px;
+    }
+  }
+
+  textarea {
+    height: 80px;
+    resize: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    @include media(">=tablet") {
+      height: 100px;
+    }
+
+    @include media(">=widescreen") {
+      height: 132px;
+    }
+  }
+
+  &__files {
+    font-size: 16px;
+
+    @include media(">=tablet") {
+      font-size: 20px;
+    }
+
+    .primary.button {
+      padding: 4px 16px;
+      margin: 0 0 0 12px;
+
+      @include media(">=tablet") {
+        margin: 0 0 0 22px;
+      }
+    }
+
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $borderInput;
+      align-items: center;
+      font-size: 12px;
+      line-height: 18px;
+      margin: 5px 0;
+
+      @include media(">=tablet") {
+        margin: 0;
+        line-height: 32px;
+      }
+    }
+
+    &__delete {
+      width: 13.5px;
+      height: 18px;
+      margin-top: 3px;
+      margin-bottom: -3px;
+
+      @include media (">=tablet") {
+        margin-top: 10px;
+      }
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+    }
+  }
+
+  input,
+  textarea {
+    &:placeholder-shown+.placeholder {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &:active,
+    &:focus {
+      border: 1px solid $black;
+    }
+
+    &:active+.placeholder,
+    &:focus+.placeholder {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+  }
+
+  &__select {
+    position: relative;
+    height: 40px;
+    padding: 10px 12px;
+
+    @include media(">=widescreen") {
+      height: 48px;
+      padding: 10px 24px;
+    }
+
+    .dropdown__icon {
+      position: absolute;
+      top: 8px;
+      right: 20px;
+      z-index: 1000;
+
+      @include media(">=tablet") {
+        right: 22px;
+      }
+
+      @include media(">=widescreen") {
+        top: 12px;
+      }
+    }
+
+    .select {
+      &__label {
+        margin: 0;
+        font-size: 15px;
+
+        @include media(">=desktop") {
+          font-size: 16px;
+          padding-top: 1px;
+        }
+
+        @include media(">=widescreen") {
+          padding-top: 4px;
+        }
+
+        span {
+          font-weight: 700;
+          color: $red;
+        }
+      }
+
+      &__options {
+        background: $white;
+        position: absolute;
+        z-index: 1000;
+        box-shadow: 0px 10px 20px $boxShadow;
+        border-radius: 26px;
+        padding: 10px 0;
+        top: 40px;
+        left: 0;
+        width: 300px;
+
+        @include media(">=desktop") {
+          top: 44px;
+          left: 0;
+          width: 480px;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        &__item {
+          font-size: 15px;
+          padding: 10px 10px;
+
+          @include media (">=desktop") {
+            font-size: 16px;
+            padding: 10px 16px;
+          }
+
+          @include media (">=widescreen") {
+            padding: 10px 24px;
+          }
+
+          &:first-child {
+            border-radius: 11px 11px 0 0;
+          }
+
+          &:last-child {
+            border-radius: 0 0 11px 11px;
+          }
+
+          &:hover {
+            background: $inputBackground;
+          }
+        }
+      }
+    }
+  }
+
+
+  .placeholder {
+    position: absolute;
+    font-weight: 400;
+    line-height: 28px;
+    transition: 200ms all;
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    color: $black;
+    left: 12px;
+    top: 6px;
+    font-size: 15px;
+
+    @include media(">=tablet") {
+      left: 15px;
+      font-size: 16px;
+    }
+
+    @include media(">=widescreen") {
+      top: 11px;
+      left: 22px;
+    }
+
+    & span {
+      color: $red;
+      font-weight: 700;
+    }
+  }
+
+  &__captcha {
+    font-size: 16px;
+    margin: 15px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media(">=tablet") {
+      font-size: 20px;
+      margin: 15px 0 20px;
+    }
+
+    @include media(">=desktop") {
+      font-size: 20px;
+      margin: 20px 0 30px;
+    }
+
+    @include media(">=widescreen") {
+      margin: 24px 0 40px;
+    }
+
+    input {
+      margin: 0;
+      width: 80px;
+
+      @include media(">=tablet") {
+        width: 120px;
+        height: 40px;
+      }
+
+      @include media(">=desktop") {
+        width: 167px;
+        height: 40px;
+      }
+
+      @include media(">=widescreen") {
+        height: 48px;
+      }
+    }
+
+    .placeholder {
+      top: -0.3em;
+
+      @include media(">=tablet") {
+        top: -0.3em;
+      }
+    }
+
+    span {
+      color: $red;
+      font-weight: 700;
+    }
+  }
+}
+
+.upload_files_input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.4px;
+  height: 0.4px;
+}
+
+.primary.button.send {
+  margin: 0;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captcha {
+  &__refresh {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &__image {
+    width: 72px;
+    height: 38px;
+  }
+}
+
+.range-slider {
+  font-size: 16px;
+
+  @include media(">=tablet") {
+    font-size: 20px;
+  }
+
+  &__budget,
+  &__deadline {
+    margin-top: 10px;
+
+    @include media(">=desktop") {
+      margin-top: 24px;
+    }
+
+    input {
+      margin: 0;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      color: $red;
+      font-weight: 700;
+      width: 100px;
+      text-align: right;
+    }
+
+    label {
+      width: 100px;
+    }
+  }
+
+  .range {
+    --val: 0;
+    position: relative;
+    -webkit-appearance: none;
+    cursor: pointer;
+    height: 4px;
+    width: 50%;
+
+    @include media(">=tablet") {
+      width: 45%;
+    }
+
+    @include media(">tablet-xl") {
+      width: 50%;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      background: url("../../assets/icons/range.svg");
+      width: 14px;
+      height: 14px;
+      margin-top: -5px;
+      z-index: 4;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 100%;
+      background: linear-gradient(to right,
+          $red calc(var(--val) * 100%),
+          $inputBackground 0);
+      border-radius: 2px;
+    }
+
+    &::-ms-fill-lower {
+      background: $red;
+    }
+
+    &::-ms-fill-upper {
+      background: $inputBackground;
+    }
+  }
+}
+
+
+input.success,
+textarea.success,
+.input-group__select.success {
+  border: 1px solid $green;
+}
+
+input.error,
+textarea.error {
+  border: 1px solid $red;
+  color: $red;
+}
+
+label.placeholder.error,
+.select__label.error {
+  color: $red;
+}
+
+.input-group__select.error {
+  border: 1px solid $red;
+}
+
+span.error {
+  color: $red;
+  font-size: 11px;
+  margin: -15px 0 5px;
+  padding-left: 12px;
+  line-height: 28px;
+
+  @include media(">=tablet") {
+    font-size: 12px;
+    padding-left: 16px;
+  }
+
+  @include media(">=desktop") {
+    margin: -20px 0 10px;
+    padding-left: 16px;
+    line-height: 28px;
+  }
+
+  @include media(">=widescreen") {
+    margin: -24px 0 25px;
+    padding-left: 24px;
+  }
+}
+
+.focus {
+  border: 1px solid $black;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 50px $inputBackground;
+  -webkit-text-fill-color: $black;
+}
+
+.captcha.error {
+  text-align: center;
+
+  @include media(">=widescreen") {
+    margin-top: -40px;
+  }
+}
+
+.magento_contact_form {
+
+  .input-group {
+    &__files {
+      .primary.button {
+        background-color: $orange;
+      }
+    }
+
+    &__select {
+      .select {
+        &__label {
+          span {
+            color: $orange;
+          }
+        }
+      }
+    }
+
+    .placeholder {
+      & span {
+        color: $orange;
+      }
+    }
+
+    &__captcha {
+
+      span {
+        color: $orange;
+      }
+    }
+  }
+
+  .primary.button.send {
+    background: $orange;
+  }
+
+  .range-slider {
+
+    &__budget,
+    &__deadline {
+      span {
+        color: $orange;
+      }
+    }
+
+    .range {
+
+      &::-webkit-slider-thumb {
+        background: url("../../assets/icons/range_magento.svg");
+      }
+
+      &::-webkit-slider-runnable-track {
+        background: linear-gradient(to right,
+            $orange calc(var(--val) * 100%),
+            $inputBackground 0);
+      }
+
+      &::-ms-fill-lower {
+        background: $orange;
+      }
+    }
+  }
+
+  input.error,
+  textarea.error {
+    border: 1px solid $orange;
+    color: $orange;
+  }
+
+  label.placeholder.error,
+  .select__label.error {
+    color: $orange;
+  }
+
+  .input-group__select.error {
+    border: 1px solid $orange;
+  }
+
+  span.error {
+    color: $orange;
+  }
+
+}
